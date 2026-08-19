@@ -1,4 +1,7 @@
 from time import sleep
+from requests import get,exceptions
+from subprocess import run
+from pyperclip import copy
 
 
 #爬取前提示
@@ -7,11 +10,8 @@ sleep(1)
 a=input("\n按 Enter 键开始爬取...\n关键字‘q’退出\n")
 if a == "q":
     exit()
-#注意：a的作用只是临时判定用的
+#a的作用只是临时判定
 
-
-#爬取内容
-from requests import get,exceptions #在这里引入是为了避免误运行此脚本时而造成白引入
 
 print("尝试爬取……")
 for i in range(5):
@@ -39,13 +39,11 @@ for i in range(5):
 #请求把爬取内容写入剪切板
 a=input("是否要写入剪切板？\n默认“y”\ny/n\n")
 if a == "y" or a == '':
-    from pyperclip import copy
     copy(h.text)
 
 #请求打开hosts
 a=input("\n是否要打开hosts？\n这将会尝试用管理员身份打开'C:\\Windows\\System32\\drivers\\etc\\hosts'\n默认“y”\ny/n\n")
 if a == "y" or a == '':
-    from subprocess import run
     hosts = r'C:\Windows\System32\drivers\etc\hosts'
     run(f'runas /user:Administrator "notepad.exe {hosts}"', shell=True)
 
